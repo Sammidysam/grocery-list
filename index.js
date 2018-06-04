@@ -1,3 +1,3 @@
 const btn = document.querySelector("button")
 
-btn.addEventListener("click", function () { document.querySelector("h1").textContent = "Spellbook - Button Clicked" })
+btn.addEventListener("click", function () { document.getElementById("click").textContent = "Good on you for clicking the button!" })
