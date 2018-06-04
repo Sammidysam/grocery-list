@@ -1,3 +1,11 @@
+const form = document.querySelector("form")
+const text = document.getElementById("change")
 const btn = document.querySelector("button")
 
-btn.addEventListener("click", function () { document.getElementById("click").textContent = "Good on you for clicking the button!" })
+const changeText = function () {
+    const field = document.getElementById("changetext")
+
+    text.textContent = field.value
+}
+
+btn.addEventListener("click", changeText)
