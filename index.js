@@ -1,11 +1,11 @@
-const form = document.querySelector("form")
 const text = document.getElementById("change")
-const btn = document.querySelector("button")
 
-const changeText = function () {
-    const field = document.getElementById("changetext")
+const get = function (name) {
+    if (name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
+       return decodeURIComponent(name[1]);
+ }
 
-    text.textContent = field.value
+const newtext = get("newtext")
+if (newtext != "") {
+    text.textContent = newtext
 }
-
-btn.addEventListener("click", changeText)
