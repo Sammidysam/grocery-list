@@ -37,6 +37,26 @@ const appendSpell = function (spellName, spellLevel) {
 	spellsDiv.appendChild(newItem)
 }
 
+const sortSpells = function () {
+	const spellList = document.getElementById('spells')
+	const newList = spellList.cloneNode(false)
+
+	let list = []
+	for (let i = spellList.childNodes.length; i--;) {
+		if (spellList.childNodes[i].nodeName == 'LI')
+			list.push(spellList.childNodes[i])
+	}
+
+	list.sort(function (a, b) {
+		return parseFloat(a.childNodes[1].textContent) - parseFloat(b.childNodes[1].textContent)
+	})
+
+	for (let i = 0; i < list.length; i++)
+		newList.appendChild(list[i])
+	
+	spellList.parentNode.replaceChild(newList, spellList)
+}
+
 const changeHeading = function(ev) {
   ev.preventDefault()
 
@@ -53,6 +73,7 @@ const changeHeading = function(ev) {
   }
 
   appendSpell(spellName, spellLevel)
+  sortSpells()
 
   f.reset()
 }
