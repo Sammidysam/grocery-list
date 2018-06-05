@@ -1,11 +1,9 @@
 const text = document.getElementById("change")
+const form = document.querySelector("form")
+const input = document.getElementById("changetext")
 
-const get = function (name) {
-    if (name=(new RegExp('[?&]'+encodeURIComponent(name)+'=([^&]*)')).exec(location.search))
-       return decodeURIComponent(name[1]);
- }
+form.addEventListener("submit", function (ev) {
+	ev.preventDefault()
 
-const newtext = get("newtext")
-if (newtext != "") {
-    text.textContent = newtext
-}
+	text.textContent = input.value
+})
