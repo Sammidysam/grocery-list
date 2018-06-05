@@ -1,4 +1,7 @@
+const DEFAULT_LEVEL = 1
+
 const form = document.querySelector('form')
+const errorBox = document.querySelector('.error')
 
 // This checks if a string is a number or not.
 // Borrowed from https://stackoverflow.com/questions/9716468/is-there-any-function-like-isnumeric-in-javascript-to-validate-numbers
@@ -14,7 +17,10 @@ const changeHeading = function(ev) {
   let spellLevel = f.spellLevel.value
 
   if (!isNumeric(spellLevel)) {
-	  spellLevel = 1
+	  errorBox.innerHTML = `${spellName} must be given an integer level<br>Default value of ${DEFAULT_LEVEL} used`
+	  spellLevel = DEFAULT_LEVEL
+  } else {
+	  errorBox.innerHTML = ''
   }
 
   const spellsDiv = document.querySelector('#spells')
