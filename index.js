@@ -1,14 +1,15 @@
-const btnText = document.getElementById("button")
-const inputText = document.getElementById("input")
-const form = document.querySelector("form")
-const btn = document.querySelector("button")
+const form = document.querySelector('form')
 
-btn.addEventListener("click", function () {
-	btnText.textContent = "New text!"
-})
+const changeHeading = function(ev) {
+  ev.preventDefault()
 
-form.addEventListener("submit", function (ev) {
-	ev.preventDefault()
+  const f = ev.target
+  const spellName = f.spellName.value
 
-	inputText.textContent = ev.target.newtext.value
-})
+  const spellsDiv = document.querySelector('#spells')
+  spellsDiv.innerHTML += `<li>${spellName}</li>`
+
+  f.reset()
+}
+
+form.addEventListener('submit', changeHeading)
