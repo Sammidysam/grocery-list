@@ -128,9 +128,10 @@ main {
     margin-left: 10vw;
     font-family: inherit;
     font-size: 1rem;
-    color: pink;
+    color: red;
     text-align: center;
     background-image: url(parchment.jpg);
+    background-position: center;
     box-shadow: 1px 1px 15px rgba(0,0,0,0.4);
 }
 
