@@ -25,9 +25,18 @@ const changeHeading = function(ev) {
   }
 
   const spellsDiv = document.querySelector('#spells')
-  
   const newItem = document.createElement('li')
-  newItem.appendChild(document.createTextNode(`${spellName}, Level ${spellLevel}`))
+  const spellNameSpan = document.createElement('span')
+  const spellLevelSpan = document.createElement('span')
+
+  spellNameSpan.appendChild(document.createTextNode(spellName))
+  spellNameSpan.setAttribute('class', 'spellName')
+
+  spellLevelSpan.appendChild(document.createTextNode(spellLevel))
+  spellLevelSpan.setAttribute('class', 'spellLevel')
+
+  newItem.appendChild(spellNameSpan)
+  newItem.appendChild(spellLevelSpan)
 
   spellsDiv.appendChild(newItem)
 
