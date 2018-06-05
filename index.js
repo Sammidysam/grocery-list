@@ -9,6 +9,34 @@ const isNumeric = function(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
+const spellNameSpan = function (spellName) {
+	const spellNameSpan = document.createElement('span')
+
+	spellNameSpan.appendChild(document.createTextNode(spellName))
+	spellNameSpan.setAttribute('class', 'spellName')
+
+	return spellNameSpan
+}
+
+const spellLevelSpan = function (spellLevel) {
+	const spellLevelSpan = document.createElement('span')
+  
+	spellLevelSpan.appendChild(document.createTextNode(spellLevel))
+	spellLevelSpan.setAttribute('class', 'spellLevel')
+
+	return spellLevelSpan
+}
+
+const appendSpell = function (spellName, spellLevel) {
+	const spellsDiv = document.querySelector('#spells')
+	const newItem = document.createElement('li')
+  
+	newItem.appendChild(spellNameSpan(spellName))
+	newItem.appendChild(spellLevelSpan(spellLevel))
+  
+	spellsDiv.appendChild(newItem)
+}
+
 const changeHeading = function(ev) {
   ev.preventDefault()
 
@@ -24,21 +52,7 @@ const changeHeading = function(ev) {
 	  errorBox.innerHTML = ''
   }
 
-  const spellsDiv = document.querySelector('#spells')
-  const newItem = document.createElement('li')
-  const spellNameSpan = document.createElement('span')
-  const spellLevelSpan = document.createElement('span')
-
-  spellNameSpan.appendChild(document.createTextNode(spellName))
-  spellNameSpan.setAttribute('class', 'spellName')
-
-  spellLevelSpan.appendChild(document.createTextNode(spellLevel))
-  spellLevelSpan.setAttribute('class', 'spellLevel')
-
-  newItem.appendChild(spellNameSpan)
-  newItem.appendChild(spellLevelSpan)
-
-  spellsDiv.appendChild(newItem)
+  appendSpell(spellName, spellLevel)
 
   f.reset()
 }
