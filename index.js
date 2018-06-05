@@ -1,7 +1,6 @@
 const btnText = document.getElementById("button")
 const inputText = document.getElementById("input")
 const form = document.querySelector("form")
-const input = document.getElementById("changetext")
 const btn = document.querySelector("button")
 
 btn.addEventListener("click", function () {
@@ -11,5 +10,5 @@ btn.addEventListener("click", function () {
 form.addEventListener("submit", function (ev) {
 	ev.preventDefault()
 
-	inputText.textContent = input.value
+	inputText.textContent = ev.target.newtext.value
 })
