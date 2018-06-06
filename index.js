@@ -1,4 +1,5 @@
 const DEFAULT_LEVEL = 1
+const DEFAULT_MESSAGE = `Default value of ${DEFAULT_LEVEL} used`
 
 const form = document.querySelector('form')
 const errorBox = document.querySelector('.error')
@@ -57,20 +58,29 @@ const sortSpells = function () {
 	spellList.parentNode.replaceChild(newList, spellList)
 }
 
+// Validates that the spell level is good:
+// - numeric
+// - non-negative
+const checkSpellLevel = function (spellLevel, spellName) {
+	if (!isNumeric(spellLevel)) {
+		errorBox.innerHTML = `${spellName} must be given a numeric level<br>${DEFAULT_MESSAGE}`
+		spellLevel = DEFAULT_LEVEL
+	} else if (spellLevel < 0) {
+		errorBox.innerHTML = `${spellName} must be given a non-negative level<br>${DEFAULT_MESSAGE}`
+		spellLevel = DEFAULT_LEVEL
+	} else {
+		errorBox.innerHTML = ''
+	}
+
+	return spellLevel
+}
+
 const changeHeading = function(ev) {
   ev.preventDefault()
 
   const f = ev.target
   const spellName = f.spellName.value
-  let spellLevel = f.spellLevel.value
-
-  // If the spell level is not a number, turn it into one.
-  if (!isNumeric(spellLevel)) {
-	  errorBox.innerHTML = `${spellName} must be given a numeric level<br>Default value of ${DEFAULT_LEVEL} used`
-	  spellLevel = DEFAULT_LEVEL
-  } else {
-	  errorBox.innerHTML = ''
-  }
+  const spellLevel = checkSpellLevel(f.spellLevel.value, spellName)
 
   appendSpell(spellName, spellLevel)
   sortSpells()
