@@ -75,6 +75,10 @@ input[type="number"]:focus {
   box-shadow: 0 0 5px #cacaca;
 }
 
+input[name="spellName"] {
+  flex-grow: 3
+}
+
 .buttonWrapper {
   padding-top: 0;
   padding-bottom: 0;
