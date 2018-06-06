@@ -86,7 +86,7 @@ const validateSpellLevel = function (spell) {
 	return spell.level
 }
 
-const changeHeading = function(ev) {
+const addSpell = function(ev) {
   ev.preventDefault()
 
   const f = ev.target
@@ -105,4 +105,4 @@ const changeHeading = function(ev) {
   f.spellName.focus()
 }
 
-form.addEventListener('submit', changeHeading)
+form.addEventListener('submit', addSpell)
