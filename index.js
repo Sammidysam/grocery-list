@@ -102,6 +102,7 @@ const changeHeading = function(ev) {
   addSortedSpells()
 
   f.reset()
+  f.spellName.focus()
 }
 
 form.addEventListener('submit', changeHeading)
