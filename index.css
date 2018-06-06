@@ -46,7 +46,8 @@ form > div {
   align-items: stretch;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="number"] {
   flex: 1 1 0px;
   height: auto;
   min-width: 0;
@@ -66,7 +67,8 @@ input[type="text"] {
   appearance: none;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
   outline: 0;
   border: 1px solid #8a8a8a;
   background-color: #fefefe;
