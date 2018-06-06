@@ -86,7 +86,7 @@ input[name="spellName"] {
   flex: 0 0 auto;
 }
 
-button[type="submit"] {
+button {
   background-color: #F8BE3D;
   color: #0a0a0a;
   height: auto;
@@ -106,6 +106,18 @@ button[type="submit"] {
   line-height: 1;
   text-align: center;
   cursor: pointer;
+}
+
+button.delete {
+  background-color: rgba(163, 85, 40, 0);
+  border-style: dashed;
+  border-color: rgb(163, 85, 40);
+  border-radius: 70%;
+  margin-left: 1em;
+}
+
+button.delete:hover {
+  background-color: rgb(99, 51, 24);
 }
 
 button[type="submit"]:hover {

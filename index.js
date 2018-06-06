@@ -21,12 +21,29 @@ const spellSpan = function (name, value) {
 	return spellSpan
 }
 
+const deleteListener = function(ev) {
+	const btn = ev.target
+
+	spells.splice(spells.indexOf(btn.spell), 1)
+
+	addSortedSpells()
+}
+
 const appendSpellToLayout = function (spell) {
 	const spellsDiv = document.querySelector('#spells')
 	const newItem = document.createElement('li')
   
 	newItem.appendChild(spellSpan('Name', spell.name))
 	newItem.appendChild(spellSpan('Level', spell.level))
+
+	// Add delete button.
+	const deleteBtn = document.createElement('button')
+	deleteBtn.textContent = "Delete"
+	deleteBtn.className = "delete"
+	deleteBtn.spell = spell
+	deleteBtn.addEventListener("click", deleteListener)
+
+	newItem.appendChild(deleteBtn)
   
 	spellsDiv.appendChild(newItem)
 }
