@@ -1,3 +1,5 @@
+const spells = []
+
 const DEFAULT_LEVEL = 1
 const DEFAULT_MESSAGE = `Default value of ${DEFAULT_LEVEL} used`
 
@@ -19,7 +21,7 @@ const spellSpan = function (name, value) {
 	return spellSpan
 }
 
-const appendSpell = function (spell) {
+const appendSpellToLayout = function (spell) {
 	const spellsDiv = document.querySelector('#spells')
 	const newItem = document.createElement('li')
   
@@ -30,23 +32,20 @@ const appendSpell = function (spell) {
 }
 
 const sortSpells = function () {
-	const spellList = document.getElementById('spells')
-	const newList = spellList.cloneNode(false)
-
-	let list = []
-	for (let i = spellList.childNodes.length; i--;) {
-		if (spellList.childNodes[i].nodeName == 'LI')
-			list.push(spellList.childNodes[i])
-	}
-
-	list.sort(function (a, b) {
-		return parseFloat(a.childNodes[1].textContent) - parseFloat(b.childNodes[1].textContent)
+	spells.sort(function (a, b) {
+		return parseFloat(a.level) - parseFloat(b.level)
 	})
+}
 
-	for (let i = 0; i < list.length; i++)
-		newList.appendChild(list[i])
-	
-	spellList.parentNode.replaceChild(newList, spellList)
+const addSortedSpells = function () {
+	sortSpells()
+
+	const spellList = document.getElementById('spells')
+	spellList.innerHTML = ''
+
+	spells.forEach(function (spell) {
+		appendSpellToLayout(spell)
+	})
 }
 
 // Validates that the spell level is good:
@@ -77,8 +76,8 @@ const changeHeading = function(ev) {
   
   validateSpellLevel(spell)
 
-  appendSpell(spell)
-  sortSpells()
+  spells.push(spell)
+  addSortedSpells()
 
   f.reset()
 }
