@@ -10,30 +10,21 @@ const isNumeric = function(n) {
 	return !isNaN(parseFloat(n)) && isFinite(n)
 }
 
-const spellNameSpan = function (spellName) {
-	const spellNameSpan = document.createElement('span')
+const spellSpan = function (name, value) {
+	const spellSpan = document.createElement('span')
 
-	spellNameSpan.appendChild(document.createTextNode(spellName))
-	spellNameSpan.setAttribute('class', 'spellName')
+	spellSpan.appendChild(document.createTextNode(value))
+	spellSpan.setAttribute('class', 'spell' + name)
 
-	return spellNameSpan
+	return spellSpan
 }
 
-const spellLevelSpan = function (spellLevel) {
-	const spellLevelSpan = document.createElement('span')
-  
-	spellLevelSpan.appendChild(document.createTextNode(spellLevel))
-	spellLevelSpan.setAttribute('class', 'spellLevel')
-
-	return spellLevelSpan
-}
-
-const appendSpell = function (spellName, spellLevel) {
+const appendSpell = function (spell) {
 	const spellsDiv = document.querySelector('#spells')
 	const newItem = document.createElement('li')
   
-	newItem.appendChild(spellNameSpan(spellName))
-	newItem.appendChild(spellLevelSpan(spellLevel))
+	newItem.appendChild(spellSpan('Name', spell.name))
+	newItem.appendChild(spellSpan('Level', spell.level))
   
 	spellsDiv.appendChild(newItem)
 }
@@ -61,28 +52,32 @@ const sortSpells = function () {
 // Validates that the spell level is good:
 // - numeric
 // - non-negative
-const checkSpellLevel = function (spellLevel, spellName) {
-	if (!isNumeric(spellLevel)) {
-		errorBox.innerHTML = `${spellName} must be given a numeric level<br>${DEFAULT_MESSAGE}`
-		spellLevel = DEFAULT_LEVEL
-	} else if (spellLevel < 0) {
-		errorBox.innerHTML = `${spellName} must be given a non-negative level<br>${DEFAULT_MESSAGE}`
-		spellLevel = DEFAULT_LEVEL
+const validateSpellLevel = function (spell) {
+	if (!isNumeric(spell.level)) {
+		errorBox.innerHTML = `${spell.name} must be given a numeric level<br>${DEFAULT_MESSAGE}`
+		spell.level = DEFAULT_LEVEL
+	} else if (spell.level < 0) {
+		errorBox.innerHTML = `${spell.name} must be given a non-negative level<br>${DEFAULT_MESSAGE}`
+		spell.level = DEFAULT_LEVEL
 	} else {
 		errorBox.innerHTML = ''
 	}
 
-	return spellLevel
+	return spell.level
 }
 
 const changeHeading = function(ev) {
   ev.preventDefault()
 
   const f = ev.target
-  const spellName = f.spellName.value
-  const spellLevel = checkSpellLevel(f.spellLevel.value, spellName)
+  const spell = {
+	  name: f.spellName.value,
+	  level: f.spellLevel.value
+  }
+  
+  validateSpellLevel(spell)
 
-  appendSpell(spellName, spellLevel)
+  appendSpell(spell)
   sortSpells()
 
   f.reset()
