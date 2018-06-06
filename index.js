@@ -24,7 +24,7 @@ const spellSpan = function (name, value) {
 const deleteListener = function(ev) {
 	const btn = ev.target
 
-	spells.splice(spells.indexOf(btn.spell), 1)
+	spells.splice(btn.spell.index, 1)
 
 	addSortedSpells()
 }
@@ -51,6 +51,10 @@ const appendSpellToLayout = function (spell) {
 const sortSpells = function () {
 	spells.sort(function (a, b) {
 		return parseFloat(a.level) - parseFloat(b.level)
+	})
+
+	spells.forEach(function (s, i) {
+		s.index = i
 	})
 }
 
@@ -88,7 +92,8 @@ const changeHeading = function(ev) {
   const f = ev.target
   const spell = {
 	  name: f.spellName.value,
-	  level: f.spellLevel.value
+	  level: f.spellLevel.value,
+	  index: spells.length
   }
   
   validateSpellLevel(spell)
