@@ -9,3 +9,5 @@ Issues:
 - When deleting or adding an element to the list, sometimes extra work is done.
   For example, if deleting from the beginning/end of the list of spells, the entire list is still sorted and readded to the DOM.
   Optimization here would be good.
+  To go a step further, when deleting, the list should never be resorted.
+  It is all simply a waste of computation.
