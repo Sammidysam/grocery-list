@@ -11,3 +11,12 @@ Issues:
   Optimization here would be good.
   To go a step further, when deleting, the list should never be resorted.
   It is all simply a waste of computation.
+
+Next Step:
+
+As this project was in order to familiarize myself with the main concepts of front-end, some areas could be fleshed out more to ensure understanding.
+So far, I have read a solid amount about these concepts, but writing some code would probably cement it.
+
+- Flexbox: Create a table?
+  How about a sports standings table or something?
+- JavaScript inheritance: Write some examples or something, not sure how to best practically use it.
